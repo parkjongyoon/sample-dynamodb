@@ -19,20 +19,24 @@ public class CustomerRepository {
         this.customerTable = dynamoDbEnhancedClient.table("Customer", TableSchema.fromBean(Customer.class));
     }	
 	
-    public void saveCustomer() {
-    	Customer customer = Customer.builder()
-    			.customerId("abc")
-    			.firstName("kang")
-    			.lastName("suji")
-    			.email("suji@naver.com")
-    			.build();
-    	
+    //저장하기
+    public void saveCustomer(Customer customer) {
     	customerTable.putItem(customer);
-    	
     }
 
+    //조회하기
     public Customer getCustomerById(String customerId) {
         return customerTable.getItem(Key.builder().partitionValue(customerId).build());
+    }
+    
+    //수정하기
+    public void updateCustomer(Customer customer) {
+    	customerTable.updateItem(customer);
+    }
+    
+    //삭제하기
+    public void deleteCustomer(String customerId) {
+    	customerTable.deleteItem(Key.builder().partitionValue(customerId).build());
     }
 
 }

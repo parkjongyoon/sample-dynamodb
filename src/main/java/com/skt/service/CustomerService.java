@@ -13,11 +13,19 @@ public class CustomerService {
 	
     private final CustomerRepository customerRepository;
     
-    public void saveCustomer() {
-        customerRepository.saveCustomer();
+    public void saveCustomer(Customer customer) {
+        customerRepository.saveCustomer(customer);
     }
 
     public Customer getCustomerById(String customerId) {
         return customerRepository.getCustomerById(customerId);
     }
+    
+    public void updateCustomer(Customer customer) {
+    	customerRepository.updateCustomer(customer);
+    }
+    
+    public void deleteCustomer(String customerId) {
+    	customerRepository.deleteCustomer(customerId);
+    }    
 }
